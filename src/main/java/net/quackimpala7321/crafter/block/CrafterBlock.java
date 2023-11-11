@@ -24,8 +24,6 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.CraftingRecipe;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
@@ -40,7 +38,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
-import net.quackimpala7321.crafter.ItemScattererAccessor;
+import net.quackimpala7321.crafter.util.ItemScattererAccessor;
 import net.quackimpala7321.crafter.block.entity.CrafterBlockEntity;
 import net.quackimpala7321.crafter.recipe.RecipeCache;
 import net.quackimpala7321.crafter.registry.ModBlockEntities;
@@ -112,7 +110,7 @@ public class CrafterBlock extends BlockWithEntity {
 
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-        return world.isClient ? null : validateTicker(type, ModBlockEntities.CRAFTER, CrafterBlockEntity::tickCrafting);
+        return world.isClient ? null : checkType(type, ModBlockEntities.CRAFTER, CrafterBlockEntity::tickCrafting);
     }
 
     private void setTriggered(@Nullable BlockEntity blockEntity, boolean triggered) {

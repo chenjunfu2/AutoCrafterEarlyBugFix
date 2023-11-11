@@ -12,7 +12,6 @@ import java.util.Optional;
 import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.CraftingRecipe;
-import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.recipe.RecipeManager;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.collection.DefaultedList;
@@ -55,9 +54,9 @@ public class RecipeCache {
     }
 
     private Optional<CraftingRecipe> getAndCacheRecipe(RecipeInputInventory inputInventory, World world) {
-        Optional<RecipeEntry<CraftingRecipe>> optional = world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, inputInventory, world);
-        this.cache(inputInventory.getInputStacks(), optional.map(RecipeEntry::value).orElse(null));
-        return optional.map(RecipeEntry::value);
+        Optional<CraftingRecipe> optional = world.getRecipeManager().getFirstMatch(RecipeType.CRAFTING, inputInventory, world);
+        this.cache(inputInventory.getInputStacks(), optional.orElse(null));
+        return optional;
     }
 
     private void sendToFront(int index) {
