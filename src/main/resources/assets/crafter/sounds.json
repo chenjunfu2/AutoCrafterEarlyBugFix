@@ -1,0 +1,14 @@
+{
+  "crafter_craft": {
+    "subtitle": "subtitles.block.minecraft.crafter.craft",
+    "sounds": [
+      "crafter:craft"
+    ]
+  },
+  "crafter_fail": {
+    "subtitle": "subtitles.block.minecraft.crafter.fail",
+    "sounds": [
+      "crafter:fail"
+    ]
+  }
+}

@@ -1,0 +1,4 @@
+accessWidener v2 named
+
+accessible method net/minecraft/block/AbstractBlock$Settings <init> ()V
+accessible field net/minecraft/block/AbstractBlock settings Lnet/minecraft/block/AbstractBlock$Settings;
