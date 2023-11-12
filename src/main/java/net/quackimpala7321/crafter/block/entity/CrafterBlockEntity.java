@@ -138,11 +138,7 @@ public class CrafterBlockEntity extends LootableContainerBlockEntity implements 
             this.propertyDelegate.set(i, 0);
         }
 
-        int[] var7 = is;
-        int var4 = is.length;
-
-        for(int var5 = 0; var5 < var4; ++var5) {
-            int j = var7[var5];
+        for (int j : is) {
             if (this.canToggleSlot(j)) {
                 this.propertyDelegate.set(j, 1);
             }
@@ -167,18 +163,7 @@ public class CrafterBlockEntity extends LootableContainerBlockEntity implements 
     }
 
     public boolean isEmpty() {
-        Iterator<ItemStack> var1 = this.inputStacks.iterator();
-
-        ItemStack itemStack;
-        do {
-            if (!var1.hasNext()) {
-                return true;
-            }
-
-            itemStack = var1.next();
-        } while(itemStack.isEmpty());
-
-        return false;
+        return this.inputStacks.stream().allMatch(ItemStack::isEmpty);
     }
 
     public ItemStack getStack(int slot) {
