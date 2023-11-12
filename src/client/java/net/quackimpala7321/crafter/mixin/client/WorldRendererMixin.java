@@ -1,11 +1,8 @@
 package net.quackimpala7321.crafter.mixin.client;
 
 import net.minecraft.client.render.WorldRenderer;
-import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
@@ -50,18 +47,27 @@ public class WorldRendererMixin {
     private void addSoundWorldEvents(int eventId, BlockPos pos, int data, CallbackInfo ci, Random random) {
         if (_acc.getWorld() == null) return;
         switch (eventId) {
-            case ModWorldEvents.CRAFTER_FAILS: _acc.getWorld().playSound(
-                    pos.getX(), pos.getY(), pos.getZ(),
-                    ModSoundEvents.CRAFTER_FAIL,
-                    SoundCategory.BLOCKS,
-                    1f, 1f, true);
-            case ModWorldEvents.CRAFTER_CRAFTS: _acc.getWorld().playSound(
-                    pos.getX(), pos.getY(), pos.getZ(),
-                    ModSoundEvents.CRAFTER_CRAFT,
-                    SoundCategory.BLOCKS,
-                    1f, 1f, true);
-            case ModWorldEvents.CRAFTER_SHOOTS: shootParticles(
-                    data, pos, random, ModParticles.WHITE_SMOKE);
+            case ModWorldEvents.CRAFTER_CRAFTS: {
+                _acc.getWorld().playSound(
+                        pos.getX(), pos.getY(), pos.getZ(),
+                        ModSoundEvents.CRAFTER_CRAFT,
+                        SoundCategory.BLOCKS,
+                        1f, 1f, true);
+                break;
+            }
+            case ModWorldEvents.CRAFTER_FAILS: {
+                _acc.getWorld().playSound(
+                        pos.getX(), pos.getY(), pos.getZ(),
+                        ModSoundEvents.CRAFTER_FAIL,
+                        SoundCategory.BLOCKS,
+                        1f, 1f, true);
+                break;
+            }
+            case ModWorldEvents.CRAFTER_SHOOTS: {
+                shootParticles(
+                        data, pos, random, ModParticles.WHITE_SMOKE);
+                break;
+            }
         }
     }
 }

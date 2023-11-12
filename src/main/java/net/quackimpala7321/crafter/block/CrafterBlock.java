@@ -38,6 +38,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
+import net.quackimpala7321.crafter.AutocrafterEarly;
 import net.quackimpala7321.crafter.util.ItemScattererAccessor;
 import net.quackimpala7321.crafter.block.entity.CrafterBlockEntity;
 import net.quackimpala7321.crafter.recipe.RecipeCache;
@@ -90,16 +91,17 @@ public class CrafterBlock extends BlockWithEntity {
     }
 
     public void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
-        boolean bl = world.isReceivingRedstonePower(pos);
-        boolean bl2 = state.get(TRIGGERED);
-        BlockEntity blockEntity = world.getBlockEntity(pos);
-        if (bl && !bl2) {
+        boolean powered = world.isReceivingRedstonePower(pos);
+        boolean triggered = state.get(TRIGGERED);
+
+        if (!(world.getBlockEntity(pos) instanceof CrafterBlockEntity crafterBlockEntity)) return;
+        if (powered && !triggered) {
             world.scheduleBlockTick(pos, this, 1);
             world.setBlockState(pos, state.with(TRIGGERED, true), 2);
-            this.setTriggered(blockEntity, true);
-        } else if (!bl && bl2) {
+            this.setTriggered(crafterBlockEntity, true);
+        } else if (!powered && triggered) {
             world.setBlockState(pos, state.with(TRIGGERED, false).with(CRAFTING, false), 2);
-            this.setTriggered(blockEntity, false);
+            this.setTriggered(crafterBlockEntity, false);
         }
 
     }
@@ -183,9 +185,8 @@ public class CrafterBlock extends BlockWithEntity {
             CraftingRecipe craftingRecipe = optional.get();
             ItemStack itemStack = craftingRecipe.craft(crafterBlockEntity, world.getRegistryManager());
             this.transferOrSpawnStack(world, pos, crafterBlockEntity, itemStack, state);
-            craftingRecipe.getRemainder(crafterBlockEntity).forEach((stack) -> {
-                this.transferOrSpawnStack(world, pos, crafterBlockEntity, stack, state);
-            });
+            craftingRecipe.getRemainder(crafterBlockEntity).forEach((stack) ->
+                    this.transferOrSpawnStack(world, pos, crafterBlockEntity, stack, state));
             crafterBlockEntity.getInvStackList().stream()
                     .filter(invStack -> !invStack.isEmpty())
                     .forEach(invStack -> invStack.decrement(1));

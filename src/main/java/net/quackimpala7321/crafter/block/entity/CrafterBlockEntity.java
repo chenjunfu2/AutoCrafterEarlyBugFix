@@ -30,7 +30,6 @@ import net.quackimpala7321.crafter.registry.ModBlockEntities;
 import net.quackimpala7321.crafter.block.CrafterBlock;
 import net.quackimpala7321.crafter.screen.CrafterScreenHandler;
 
-import java.util.Iterator;
 import java.util.List;
 
 public class CrafterBlockEntity extends LootableContainerBlockEntity implements RecipeInputInventory, ExtendedScreenHandlerFactory {
@@ -88,11 +87,9 @@ public class CrafterBlockEntity extends LootableContainerBlockEntity implements 
     }
 
     public boolean isSlotDisabled(int slot) {
-        if (slot >= 0 && slot < 9) {
-            return this.propertyDelegate.get(slot) == SLOT_DISABLED;
-        } else {
-            return false;
-        }
+        return slot >= 0
+                && slot < 9
+                && this.propertyDelegate.get(slot) == SLOT_DISABLED;
     }
 
     public boolean isValid(int slot, ItemStack stack) {
@@ -167,18 +164,7 @@ public class CrafterBlockEntity extends LootableContainerBlockEntity implements 
     }
 
     public boolean isEmpty() {
-        Iterator<ItemStack> var1 = this.inputStacks.iterator();
-
-        ItemStack itemStack;
-        do {
-            if (!var1.hasNext()) {
-                return true;
-            }
-
-            itemStack = var1.next();
-        } while(itemStack.isEmpty());
-
-        return false;
+        return this.inputStacks.stream().allMatch(ItemStack::isEmpty);
     }
 
     public ItemStack getStack(int slot) {
