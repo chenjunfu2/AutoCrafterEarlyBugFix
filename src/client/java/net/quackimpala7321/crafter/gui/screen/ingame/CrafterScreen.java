@@ -87,6 +87,8 @@ public class CrafterScreen extends HandledScreen<CrafterScreenHandler> {
                 }
             }
         }
+        
+        super.onMouseClick(slot, slotId, button, actionType);
     }
 
     public void drawDisabledSlot(DrawContext context, CrafterInputSlot slot) {
