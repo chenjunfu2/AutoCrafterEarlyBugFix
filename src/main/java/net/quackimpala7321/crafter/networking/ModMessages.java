@@ -9,8 +9,8 @@ import net.quackimpala7321.crafter.block.entity.CrafterBlockEntity;
 
 public class ModMessages {
     public static final Identifier SLOT_CHANGED = new Identifier(AutocrafterEarly.MOD_ID, "slot_changed");
-
-    static {
+    
+    public static void registerMessages() {
         ServerPlayNetworking.registerGlobalReceiver(SLOT_CHANGED, ((server, player, handler, buf, responseSender) -> {
             int slotId = buf.readInt();
             BlockPos pos = buf.readBlockPos();
