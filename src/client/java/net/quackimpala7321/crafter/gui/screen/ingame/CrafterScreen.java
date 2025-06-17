@@ -23,6 +23,7 @@ import net.quackimpala7321.crafter.AutocrafterEarly;
 import net.quackimpala7321.crafter.networking.ModMessages;
 import net.quackimpala7321.crafter.screen.CrafterScreenHandler;
 import net.quackimpala7321.crafter.screen.slot.CrafterInputSlot;
+import net.minecraft.item.ItemStack;
 
 @Environment(EnvType.CLIENT)
 public class CrafterScreen extends HandledScreen<CrafterScreenHandler> {
@@ -53,30 +54,38 @@ public class CrafterScreen extends HandledScreen<CrafterScreenHandler> {
 
         ClientPlayNetworking.send(ModMessages.SLOT_CHANGED, buf);
     }
+    
+    private void enableSlot(int slotId) {
+        this.setSlotEnabled(slotId, true);
+    }
+    
+    private void disableSlot(int slotId) {
+        this.setSlotEnabled(slotId, false);
+    }
+    
+    private void setSlotEnabled(int slotId, boolean enabled) {
+        this.handler.setSlotEnabled(slotId, enabled);
+        this.onSlotChangedState(slotId, this.handler.syncId, enabled);
+        float f = enabled ? 1.0F : 0.75F;
+        this.player.playSound(SoundEvents.UI_BUTTON_CLICK.value(), 0.4F, f);
+    }
 
     protected void onMouseClick(Slot slot, int slotId, int button, SlotActionType actionType) {
-        if (this.player.isSpectator()) {
-            super.onMouseClick(slot, slotId, button, actionType);
-        } else {
-            if (slotId > -1 && slotId < 9 && slot instanceof CrafterInputSlot) {
-                if (slot.hasStack()) {
-                    super.onMouseClick(slot, slotId, button, actionType);
-                    return;
+        if (slot instanceof CrafterInputSlot && (slotId > -1 && slotId < 9) && !slot.hasStack() && !this.player.isSpectator()) {
+            switch (actionType) {
+            case PICKUP:
+                if (this.handler.isSlotDisabled(slotId)) {
+                    this.enableSlot(slotId);
+                } else if (this.handler.getCursorStack().isEmpty()) {
+                    this.disableSlot(slotId);
                 }
-
-                boolean bl = this.handler.isSlotDisabled(slotId);
-                if (bl || this.handler.getCursorStack().isEmpty()) {
-                    this.handler.setSlotEnabled(slotId, bl);
-                    this.onSlotChangedState(slotId, this.handler.syncId, bl);
-                    if (bl) {
-                        this.player.playSound(SoundEvents.UI_BUTTON_CLICK.value(), 0.4F, 1.0F);
-                    } else {
-                        this.player.playSound(SoundEvents.UI_BUTTON_CLICK.value(), 0.4F, 0.75F);
-                    }
+                break;
+            case SWAP:
+                ItemStack itemStack = this.player.getInventory().getStack(button);
+                if (this.handler.isSlotDisabled(slotId) && !itemStack.isEmpty()) {
+                    this.enableSlot(slotId);
                 }
             }
-
-            super.onMouseClick(slot, slotId, button, actionType);
         }
     }
 
