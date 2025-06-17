@@ -55,6 +55,7 @@ public class CrafterBlock extends BlockWithEntity {
     public static final BooleanProperty TRIGGERED;
     private static final EnumProperty<JigsawOrientation> ORIENTATION;
     private static final int field_46802 = 6;
+    private static final int TRIGGER_DELAY = 4;
     private static final RecipeCache recipeCache;
 
     private static final Codec<Settings> SETTINGS_CODEC = Codec.unit(Settings::new);
@@ -96,7 +97,7 @@ public class CrafterBlock extends BlockWithEntity {
 
         if (!(world.getBlockEntity(pos) instanceof CrafterBlockEntity crafterBlockEntity)) return;
         if (powered && !triggered) {
-            world.scheduleBlockTick(pos, this, 1);
+            world.scheduleBlockTick(pos, this, TRIGGER_DELAY);
             world.setBlockState(pos, state.with(TRIGGERED, true), 2);
             this.setTriggered(crafterBlockEntity, true);
         } else if (!powered && triggered) {
@@ -149,7 +150,7 @@ public class CrafterBlock extends BlockWithEntity {
         }
 
         if (state.get(TRIGGERED)) {
-            world.scheduleBlockTick(pos, this, 1);
+            world.scheduleBlockTick(pos, this, TRIGGER_DELAY);
         }
 
     }

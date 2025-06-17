@@ -1,0 +1,7 @@
+{
+    "block.minecraft.crafter": "合成器",
+    "container.crafter": "合成器",
+    "subtitles.block.minecraft.crafter.craft": "合成器：合成成功",
+    "subtitles.block.minecraft.crafter.fail": "合成器：合成失败",
+    "crafter.gui.toggleable_slot": "点击禁用格子"
+}
