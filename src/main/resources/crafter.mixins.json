@@ -3,7 +3,7 @@
   "package": "net.chenjunfu2.crafter.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "ItemScattererMixin"
+    "net.chenjunfu2.mixin.ItemScattererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

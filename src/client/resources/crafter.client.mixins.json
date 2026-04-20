@@ -3,9 +3,9 @@
   "package": "net.chenjunfu2.crafter.mixin.client",
   "compatibilityLevel": "JAVA_17",
   "client": [
-    "HandledScreenMixin",
-    "WorldRendererAccessor",
-    "WorldRendererMixin"
+    "net.chenjunfu2.mixin.client.HandledScreenMixin",
+    "net.chenjunfu2.mixin.client.WorldRendererAccessor",
+    "net.chenjunfu2.mixin.client.WorldRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

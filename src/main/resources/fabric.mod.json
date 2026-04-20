@@ -17,10 +17,10 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-          "net.chenjunfu2.crafter.AutocrafterEarly"
+          "net.chenjunfu2.AutocrafterEarly"
 		],
 		"client": [
-          "net.chenjunfu2.crafter.AutocrafterEarlyClient"
+          "net.chenjunfu2.AutocrafterEarlyClient"
 		]
 	},
 	"mixins": [
