@@ -38,7 +38,6 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
-import net.quackimpala7321.crafter.AutocrafterEarly;
 import net.quackimpala7321.crafter.util.ItemScattererAccessor;
 import net.quackimpala7321.crafter.block.entity.CrafterBlockEntity;
 import net.quackimpala7321.crafter.recipe.RecipeCache;
