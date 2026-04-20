@@ -1,4 +1,4 @@
-# CrafterEarly
+# crafter-early-1.20.1
 复刻自：[QuackImpala7321-AutoCrafterEarly](https://github.com/QuackImpala7321/AutoCrafterEarly)  
 相比原先的移植mod：  
 **修复：**
