@@ -22,11 +22,11 @@ public class AutocrafterEarly implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 		ModScreenHandlers.registerScreenHandlers();
+		ModCriteria.registerCriteria();
 		ModBlocks.registerBlocks();
 		ModBlockEntities.registerBlockEntities();
 		ModParticles.registerParticles();
 		ModSoundEvents.registerSounds();
 		ModMessages.registerMessages();
-		ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(content -> content.addAfter(Blocks.DROPPER, ModBlocks.CRAFTER));
 	}
 }

@@ -5,16 +5,20 @@
       "conditions": {
         "recipe_id": "minecraft:crafter"
       },
-      "trigger": "minecraft:recipe_crafted"
+      "trigger": "minecraft:crafter_recipe_crafted"
     }
   },
   "display": {
+    "announce_to_chat": true,
     "description": {
       "translate": "advancements.adventure.crafters_crafting_crafters.description"
     },
+    "frame": "task",
+    "hidden": false,
     "icon": {
       "item": "minecraft:crafter"
     },
+    "show_toast": true,
     "title": {
       "translate": "advancements.adventure.crafters_crafting_crafters.title"
     }

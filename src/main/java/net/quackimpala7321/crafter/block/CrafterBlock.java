@@ -230,7 +230,7 @@ public class CrafterBlock extends BlockWithEntity {
             ItemDispenserBehavior.spawnItem(world, itemStack, 6, direction, vec3d);
 			
 			for (ServerPlayerEntity serverPlayerEntity : world.getNonSpectatingEntities(ServerPlayerEntity.class, Box.of(vec3d, 17.0, 17.0, 17.0))) {
-				Criteria.RECIPE_CRAFTED.trigger(serverPlayerEntity, recipe.getId(), blockEntity.getInvStackList());//recipe怎么获取？
+				Criteria.RECIPE_CRAFTED.trigger(serverPlayerEntity, recipe.getId(), blockEntity.getInvStackList());
 			}
 			
             world.syncWorldEvent(ModWorldEvents.CRAFTER_CRAFTS, pos, 0);
