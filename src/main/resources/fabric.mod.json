@@ -1,25 +1,26 @@
 {
 	"schemaVersion": 1,
-	"id": "crafter",
+	"id": "crafter-early",
 	"version": "${version}",
-	"name": "Autocrafter Early",
-	"description": "This mod is NOT for distribution.",
+	"name": "Crafter Early",
+	"description": "Crafter Early",
 	"authors": [
-		"QuackImpala7321"
+		"QuackImpala7321",
+        "chenjunfu2"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "NULL",
+		"sources": "https://github.com/chenjunfu2/AutoCrafterEarlyBugFix"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/crafter/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"net.quackimpala7321.crafter.AutocrafterEarly"
+          "net.chenjunfu2.crafter.AutocrafterEarly"
 		],
 		"client": [
-			"net.quackimpala7321.crafter.AutocrafterEarlyClient"
+          "net.chenjunfu2.crafter.AutocrafterEarlyClient"
 		]
 	},
 	"mixins": [
@@ -30,7 +31,7 @@
 		}
 	],
 	"depends": {
-		"fabricloader": ">=0.14.23",
+		"fabricloader": ">=0.14.22",
 		"minecraft": "~1.20.1",
 		"java": ">=17",
 		"fabric-api": "*"

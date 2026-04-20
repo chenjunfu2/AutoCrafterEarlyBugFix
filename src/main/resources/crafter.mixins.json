@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "net.quackimpala7321.crafter.mixin",
+  "package": "net.chenjunfu2.crafter.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "ItemScattererMixin"
