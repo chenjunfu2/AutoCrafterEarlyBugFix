@@ -3,7 +3,6 @@ package net.chenjunfu2;
 import net.chenjunfu2.registry.*;
 import net.fabricmc.api.ModInitializer;
 import net.chenjunfu2.networking.ModMessages;
-import net.chenjunfu2.crafter.registry.*;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 
