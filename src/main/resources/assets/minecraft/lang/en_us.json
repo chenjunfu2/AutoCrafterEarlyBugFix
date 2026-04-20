@@ -1,0 +1,9 @@
+{
+  "block.minecraft.crafter": "Crafter",
+  "container.crafter": "Crafter",
+  "subtitles.block.minecraft.crafter.craft": "Crafter crafted",
+  "subtitles.block.minecraft.crafter.fail": "Crafter failed",
+  "gui.toggleable_slot": "Click to disable slot",
+  "advancements.adventure.crafters_crafting_crafters.description": "Be near a Crafter when it crafts a Crafter",
+  "advancements.adventure.crafters_crafting_crafters.title": "Crafters Crafting Crafters"
+}
