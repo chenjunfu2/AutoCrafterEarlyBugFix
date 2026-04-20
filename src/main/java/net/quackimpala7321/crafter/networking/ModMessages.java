@@ -4,11 +4,10 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.quackimpala7321.crafter.AutocrafterEarly;
 import net.quackimpala7321.crafter.block.entity.CrafterBlockEntity;
 
 public class ModMessages {
-    public static final Identifier SLOT_CHANGED = new Identifier(AutocrafterEarly.MOD_ID, "slot_changed");
+    public static final Identifier SLOT_CHANGED = new Identifier("slot_changed");
     
     public static void registerMessages() {
         ServerPlayNetworking.registerGlobalReceiver(SLOT_CHANGED, ((server, player, handler, buf, responseSender) -> {

@@ -19,7 +19,6 @@ import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.quackimpala7321.crafter.AutocrafterEarly;
 import net.quackimpala7321.crafter.networking.ModMessages;
 import net.quackimpala7321.crafter.screen.CrafterScreenHandler;
 import net.quackimpala7321.crafter.screen.slot.CrafterInputSlot;
@@ -27,11 +26,11 @@ import net.minecraft.item.ItemStack;
 
 @Environment(EnvType.CLIENT)
 public class CrafterScreen extends HandledScreen<CrafterScreenHandler> {
-    private static final Identifier DISABLED_SLOT_TEXTURE = new Identifier(AutocrafterEarly.MOD_ID, "textures/gui/container/crafter/disabled_slot.png");
-    private static final Identifier POWERED_REDSTONE_TEXTURE = new Identifier(AutocrafterEarly.MOD_ID, "textures/gui/container/crafter/powered_redstone.png");
-    private static final Identifier UNPOWERED_REDSTONE_TEXTURE = new Identifier(AutocrafterEarly.MOD_ID, "textures/gui/container/crafter/unpowered_redstone.png");
-    private static final Identifier TEXTURE = new Identifier(AutocrafterEarly.MOD_ID, "textures/gui/container/crafter.png");
-    private static final Text TOGGLEABLE_SLOT_TEXT = Text.translatable("crafter.gui.toggleable_slot");
+    private static final Identifier DISABLED_SLOT_TEXTURE = new Identifier("textures/gui/container/crafter/disabled_slot.png");
+    private static final Identifier POWERED_REDSTONE_TEXTURE = new Identifier("textures/gui/container/crafter/powered_redstone.png");
+    private static final Identifier UNPOWERED_REDSTONE_TEXTURE = new Identifier("textures/gui/container/crafter/unpowered_redstone.png");
+    private static final Identifier TEXTURE = new Identifier("textures/gui/container/crafter.png");
+    private static final Text TOGGLEABLE_SLOT_TEXT = Text.translatable("gui.toggleable_slot");
     private final PlayerEntity player;
 
     public CrafterScreen(CrafterScreenHandler handler, PlayerInventory playerInventory, Text title) {
