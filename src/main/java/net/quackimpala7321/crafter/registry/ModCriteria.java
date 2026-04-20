@@ -1,7 +1,6 @@
 package net.quackimpala7321.crafter.registry;
 
 import net.minecraft.advancement.criterion.Criteria;
-import net.minecraft.advancement.criterion.RecipeCraftedCriterion;
 import net.quackimpala7321.crafter.criterion.CrafterRecipeCraftedCriterion;
 
 public class ModCriteria

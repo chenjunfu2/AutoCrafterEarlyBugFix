@@ -9,7 +9,6 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.fabricmc.fabric.mixin.object.builder.AbstractBlockAccessor;
-import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.*;
 import net.minecraft.block.dispenser.ItemDispenserBehavior;
 import net.minecraft.block.entity.BlockEntity;
@@ -41,6 +40,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
+import net.quackimpala7321.crafter.registry.ModCriteria;
 import net.quackimpala7321.crafter.util.ItemScattererAccessor;
 import net.quackimpala7321.crafter.block.entity.CrafterBlockEntity;
 import net.quackimpala7321.crafter.recipe.RecipeCache;
@@ -230,7 +230,7 @@ public class CrafterBlock extends BlockWithEntity {
             ItemDispenserBehavior.spawnItem(world, itemStack, 6, direction, vec3d);
 			
 			for (ServerPlayerEntity serverPlayerEntity : world.getNonSpectatingEntities(ServerPlayerEntity.class, Box.of(vec3d, 17.0, 17.0, 17.0))) {
-				Criteria.RECIPE_CRAFTED.trigger(serverPlayerEntity, recipe.getId(), blockEntity.getInvStackList());
+				ModCriteria.CRAFTER_RECIPE_CRAFTED.trigger(serverPlayerEntity, recipe.getId(), blockEntity.getInvStackList());
 			}
 			
             world.syncWorldEvent(ModWorldEvents.CRAFTER_CRAFTS, pos, 0);
