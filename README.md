@@ -2,7 +2,7 @@
 [![GitHub Releases](https://shields.io/github/v/release/chenjunfu2/crafter-early-1.20.1)](https://github.com/chenjunfu2/crafter-early-1.20.1/releases)
 [![GitHub Releases downloads](https://shields.io/github/downloads/chenjunfu2/crafter-early-1.20.1/total)](https://github.com/chenjunfu2/crafter-early-1.20.1/releases)
 [![GitHub Repo stars](https://shields.io/github/stars/chenjunfu2/crafter-early-1.20.1)](https://github.com/chenjunfu2/crafter-early-1.20.1/)  
-这是一个将 **``Minecraft 1.21 合成器(Crafter)``** ![icon.png](src/main/resources/assets/minecraft/textures/block/crafter_top.png) 完美移植到 **``Minecraft 1.20.1``** 的模组，将合成器完整特性与成就带回 **``Minecraft 1.20.1``** 。  
+这是一个将 **``Minecraft 1.21 合成器(Crafter)``** ![icon.png](src/main/resources/assets/minecraft/textures/block/crafter_north.png) 完美移植到 **``Minecraft 1.20.1``** 的模组，将合成器完整特性与成就带回 **``Minecraft 1.20.1``** 。  
 因为 mod 使用了原版名称空间和数据格式，所以可以与 Litematica Mod 读取的高版本投影内的合成器兼容，同时升级存档也能被高版本识别并保留。  
 
 ## 说明
