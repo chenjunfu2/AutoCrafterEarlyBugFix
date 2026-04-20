@@ -13,20 +13,20 @@
 		"sources": "https://github.com/chenjunfu2/AutoCrafterEarlyBugFix"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/crafter/icon.png",
+	"icon": "assets/crafter-early/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-          "net.chenjunfu2.AutocrafterEarly"
+          "net.chenjunfu2.CrafterEarly"
 		],
 		"client": [
-          "net.chenjunfu2.AutocrafterEarlyClient"
+          "net.chenjunfu2.CrafterEarlyClient"
 		]
 	},
 	"mixins": [
-		"crafter.mixins.json",
+      "crafter-early.mixins.json",
 		{
-			"config": "crafter.client.mixins.json",
+			"config": "crafter-early.client.mixins.json",
 			"environment": "client"
 		}
 	],
@@ -39,5 +39,5 @@
 	"suggests": {
 		"another-mod": "*"
 	},
-	"accessWidener": "crafter.accesswidener"
+	"accessWidener": "crafter-early.accesswidener"
 }

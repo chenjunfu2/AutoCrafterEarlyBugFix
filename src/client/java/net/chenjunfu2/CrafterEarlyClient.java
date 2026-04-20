@@ -6,7 +6,7 @@ import net.chenjunfu2.gui.screen.ingame.CrafterScreen;
 import net.chenjunfu2.registry.ClientModParticles;
 import net.chenjunfu2.registry.ModScreenHandlers;
 
-public class AutocrafterEarlyClient implements ClientModInitializer {
+public class CrafterEarlyClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		HandledScreens.register(ModScreenHandlers.CRAFTER_3X3, CrafterScreen::new);
