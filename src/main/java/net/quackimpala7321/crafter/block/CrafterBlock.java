@@ -9,6 +9,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.fabricmc.fabric.mixin.object.builder.AbstractBlockAccessor;
+import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.block.*;
 import net.minecraft.block.dispenser.ItemDispenserBehavior;
 import net.minecraft.block.entity.BlockEntity;
@@ -23,6 +24,7 @@ import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.CraftingRecipe;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -34,6 +36,7 @@ import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
@@ -184,9 +187,9 @@ public class CrafterBlock extends BlockWithEntity {
             world.setBlockState(pos, state.with(CRAFTING, true), 2);
             CraftingRecipe craftingRecipe = optional.get();
             ItemStack itemStack = craftingRecipe.craft(crafterBlockEntity, world.getRegistryManager());
-            this.transferOrSpawnStack(world, pos, crafterBlockEntity, itemStack, state);
+            this.transferOrSpawnStack(world, pos, crafterBlockEntity, itemStack, state, craftingRecipe);
             craftingRecipe.getRemainder(crafterBlockEntity).forEach((stack) ->
-                    this.transferOrSpawnStack(world, pos, crafterBlockEntity, stack, state));
+                    this.transferOrSpawnStack(world, pos, crafterBlockEntity, stack, state, craftingRecipe));
             crafterBlockEntity.getInvStackList().stream()
                     .filter(invStack -> !invStack.isEmpty())
                     .forEach(invStack -> invStack.decrement(1));
@@ -198,7 +201,7 @@ public class CrafterBlock extends BlockWithEntity {
         return recipeCache.getRecipe(world, inputInventory);
     }
 
-    private void transferOrSpawnStack(World world, BlockPos pos, CrafterBlockEntity blockEntity, ItemStack stack, BlockState state) {
+    private void transferOrSpawnStack(World world, BlockPos pos, CrafterBlockEntity blockEntity, ItemStack stack, BlockState state, CraftingRecipe recipe) {
         Direction direction = state.get(ORIENTATION).getFacing();
         Inventory inventory = HopperBlockEntity.getInventoryAt(world, pos.offset(direction));
         ItemStack itemStack = stack.copy();
@@ -225,6 +228,11 @@ public class CrafterBlock extends BlockWithEntity {
         if (!itemStack.isEmpty()) {
             Vec3d vec3d = Vec3d.ofCenter(pos).offset(direction, 0.7);
             ItemDispenserBehavior.spawnItem(world, itemStack, 6, direction, vec3d);
+			
+			for (ServerPlayerEntity serverPlayerEntity : world.getNonSpectatingEntities(ServerPlayerEntity.class, Box.of(vec3d, 17.0, 17.0, 17.0))) {
+				Criteria.RECIPE_CRAFTED.trigger(serverPlayerEntity, recipe.getId(), blockEntity.getInvStackList());//recipe怎么获取？
+			}
+			
             world.syncWorldEvent(ModWorldEvents.CRAFTER_CRAFTS, pos, 0);
             world.syncWorldEvent(ModWorldEvents.CRAFTER_SHOOTS, pos, direction.getId());
         }
