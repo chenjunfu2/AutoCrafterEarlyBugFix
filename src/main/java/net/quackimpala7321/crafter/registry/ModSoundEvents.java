@@ -6,8 +6,8 @@ import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 
 public class ModSoundEvents {
-    public static final SoundEvent CRAFTER_CRAFT = register("crafter_craft");
-    public static final SoundEvent CRAFTER_FAIL = register("crafter_fail");
+    public static final SoundEvent CRAFTER_CRAFT = register("block.crafter.craft");
+    public static final SoundEvent CRAFTER_FAIL = register("block.crafter.fail");
 
     private static SoundEvent register(String name) {
         final Identifier id = new Identifier(name);

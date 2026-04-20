@@ -13,8 +13,7 @@
       "translate": "advancements.adventure.crafters_crafting_crafters.description"
     },
     "icon": {
-      "count": 1,
-      "id": "minecraft:crafter"
+      "item": "minecraft:crafter"
     },
     "title": {
       "translate": "advancements.adventure.crafters_crafting_crafters.title"
